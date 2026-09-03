@@ -139,8 +139,8 @@
     </div>
   </div>
 
-  <!-- 3. HERO SECTION WITH BACKGROUND VIDEO -->
-  <section class="relative bg-[#070a0e] pt-28 sm:pt-32 lg:pt-36 pb-12 lg:pb-20 overflow-hidden text-white min-h-[580px] lg:min-h-[720px] flex items-center">
+  <!-- 3. HERO SECTION WITH BACKGROUND VIDEO & CONCEPT SLIDER -->
+  <section id="hero-section" class="relative bg-[#070a0e] pt-28 sm:pt-32 lg:pt-36 pb-16 lg:pb-24 overflow-hidden text-white min-h-[620px] lg:min-h-[720px] flex items-center">
     
     <!-- Background Looping Video Container -->
     <div class="hero-video-container">
@@ -157,190 +157,420 @@
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 py-4 sm:py-8">
       
-      <!-- ==================================================== -->
-      <!-- 1. MOBILE EXCLUSIVE PRESENTATION (Pure Product Image Slider) -->
-      <!-- ==================================================== -->
-      <div class="block lg:hidden space-y-4 text-left">
-        <!-- Top kicker -->
-        <div class="space-y-0.5">
-          <span class="text-[10px] font-bold tracking-[0.25em] text-slate-400 uppercase block">
-            RSG APPARELS
-          </span>
-          <span class="text-xs font-extrabold tracking-wider text-lime-400 uppercase inline-block">
-            CLOTHING MANUFACTURING &bull; PRIVATE LABEL
-          </span>
-        </div>
-
-        <!-- Bold Headline -->
-        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight font-editorial">
-          Quality at <span class="text-lime-400 italic font-medium">Every Stage</span>
-        </h1>
-
-        <!-- PURE PRODUCT IMAGE SLIDER (NO TEXT ON IMAGES, JUST PURE ATTRACTIVE GARMENTS) -->
-        <div class="relative w-full max-w-sm mx-auto pt-1">
-          <!-- Main Image Slider Card with Ambient Glow -->
-          <div id="mobile-product-slider" class="relative rounded-3xl overflow-hidden aspect-[4/3] bg-[#0d131a] border-2 border-lime-500/50 shadow-2xl shadow-lime-500/20 group select-none">
+      <!-- HERO SLIDES WRAPPER -->
+      <div id="hero-slides-wrapper" class="hero-slides-wrapper">
+        
+        <!-- ==================================================== -->
+        <!-- SLIDE 1: KID'S WEAR (MATCHING EXACT USER CONCEPT) -->
+        <!-- ==================================================== -->
+        <div class="hero-concept-slide active-slide" data-slide-index="0">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            <!-- Pure Image 1: Polo -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 2; opacity: 1; transform: scale(1);">
-              <img src="assets/images/hero-featured-polo.jpg" alt="RSG Cotton Pique Polo Shirt" class="w-full h-full object-cover">
-            </div>
-            <!-- Pure Image 2: Streetwear Hoodie & Raw Denim -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 1; opacity: 0; pointer-events: none; transform: scale(1.03);">
-              <img src="assets/images/hero-featured-denim.jpg" alt="RSG Heavy Fleece Hoodie" class="w-full h-full object-cover">
-            </div>
-            <!-- Pure Image 3: Quilted Jacket -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 1; opacity: 0; pointer-events: none; transform: scale(1.03);">
-              <img src="assets/images/products/ladies-jacket.jpg" alt="RSG Quilted Lightweight Jacket" class="w-full h-full object-cover">
-            </div>
-            <!-- Pure Image 4: Distressed Denim -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 1; opacity: 0; pointer-events: none; transform: scale(1.03);">
-              <img src="assets/images/products/ripped-jeans.jpg" alt="RSG Vintage Distressed Jeans" class="w-full h-full object-cover">
-            </div>
-            <!-- Pure Image 5: Fine Knit Cardigan -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 1; opacity: 0; pointer-events: none; transform: scale(1.03);">
-              <img src="assets/images/products/designer-cardigan.jpg" alt="RSG Fine Knit Cardigan" class="w-full h-full object-cover">
-            </div>
-            <!-- Pure Image 6: Kids Organic Wear -->
-            <div class="mobile-product-slide absolute inset-0 w-full h-full transition-all duration-500 ease-out" style="z-index: 1; opacity: 0; pointer-events: none; transform: scale(1.03);">
-              <img src="assets/images/products/baby-girls-dress.jpg" alt="RSG Kids Organic Dress" class="w-full h-full object-cover">
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 xl:col-span-6 space-y-4 text-left">
+              
+              <!-- Top Hatching Stripes Kicker -->
+              <div class="hero-animate-kicker">
+                <div class="hero-kicker-stripes">
+                  <span class="hero-hatch-stripes"></span>
+                  <span>DO YOU NEED</span>
+                  <span class="hero-hatch-stripes"></span>
+                </div>
+              </div>
+
+              <!-- Main Title -->
+              <div class="hero-animate-title">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                  Kid's Wear
+                </h1>
+              </div>
+
+              <!-- Description -->
+              <div class="hero-animate-desc">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+                  We supply and wholesale best quality ready-made baby wear, boys and girls apparels, kids wear &amp; kids cloths products around the globe.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-lime-400">
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Baby &amp; Toddler</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">100% Organic Cotton</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Custom Embroidery</span>
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="hero-animate-ctas pt-3 flex flex-wrap gap-3.5 items-center">
+                <a href="productsd.html#kids" class="btn-pill-lime">
+                  <span>Explore Collection</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="contactd.html#rfq-section" class="btn-pill-white">
+                  <span>Request RFQ</span>
+                </a>
+              </div>
             </div>
 
-            <!-- Left / Right Floating Controls -->
-            <button type="button" id="mobile-slider-prev" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#070a0e]/80 backdrop-blur-md border border-slate-700/80 text-white flex items-center justify-center text-xs transition active:scale-90 hover:bg-lime-500 hover:text-slate-950 z-20 cursor-pointer" aria-label="Previous Product">
-              <i class="fa-solid fa-chevron-left text-[11px]"></i>
-            </button>
-            <button type="button" id="mobile-slider-next" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-[#070a0e]/80 backdrop-blur-md border border-slate-700/80 text-white flex items-center justify-center text-xs transition active:scale-90 hover:bg-lime-500 hover:text-slate-950 z-20 cursor-pointer" aria-label="Next Product">
-              <i class="fa-solid fa-chevron-right text-[11px]"></i>
-            </button>
-          </div>
+            <!-- Right Staggered 3-Column Product Showcase (Exact 6 Items from Reference Image) -->
+            <div class="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end hero-animate-cards">
+              <div class="hero-stagger-collage">
+                
+                <!-- Column 1: Staggered Lowest -->
+                <div class="hero-stagger-col hero-stagger-col-1">
+                  <div class="hero-product-card group" title="Kids Ripped Denim Jeans">
+                    <img src="assets/images/hero-slider/kids/kids-jeans.jpg" alt="Kids Distressed Jeans" loading="eager">
+                    <span class="hero-card-badge">Kids Denim</span>
+                  </div>
+                  <div class="hero-product-card group" title="Baby Floral Summer Dress">
+                    <img src="assets/images/hero-slider/kids/kids-dress.jpg" alt="Baby Floral Summer Dress" loading="eager">
+                    <span class="hero-card-badge">Floral Dress</span>
+                  </div>
+                </div>
 
-          <!-- Pagination Indicator Dots & Live Counter Below Image -->
-          <div class="flex items-center justify-between mt-3 px-1">
-            <div class="flex items-center gap-1.5" id="mobile-slider-dots">
-              <button class="mobile-slider-dot active" data-index="0" aria-label="Slide 1"></button>
-              <button class="mobile-slider-dot inactive" data-index="1" aria-label="Slide 2"></button>
-              <button class="mobile-slider-dot inactive" data-index="2" aria-label="Slide 3"></button>
-              <button class="mobile-slider-dot inactive" data-index="3" aria-label="Slide 4"></button>
-              <button class="mobile-slider-dot inactive" data-index="4" aria-label="Slide 5"></button>
-              <button class="mobile-slider-dot inactive" data-index="5" aria-label="Slide 6"></button>
+                <!-- Column 2: Staggered Mid -->
+                <div class="hero-stagger-col hero-stagger-col-2">
+                  <div class="hero-product-card group" title="Animal Knitted Winter Sweater">
+                    <img src="assets/images/hero-slider/kids/kids-sweater.jpg" alt="Animal Knitted Sweater" loading="eager">
+                    <span class="hero-card-badge">Kids Knitwear</span>
+                  </div>
+                  <div class="hero-product-card group" title="Boys Cotton Boxer Shorts Set">
+                    <img src="assets/images/hero-slider/kids/kids-boxers.jpg" alt="Cotton Boxer Shorts Set" loading="eager">
+                    <span class="hero-card-badge">Innerwear Set</span>
+                  </div>
+                </div>
+
+                <!-- Column 3: Staggered Top -->
+                <div class="hero-stagger-col hero-stagger-col-3">
+                  <div class="hero-product-card group" title="Kids Red Fur Trim Hooded Coat">
+                    <img src="assets/images/hero-slider/kids/kids-coat.jpg" alt="Fleece Fur Winter Coat" loading="eager">
+                    <span class="hero-card-badge">Winter Outerwear</span>
+                  </div>
+                  <div class="hero-product-card group" title="Baby Striped Graphic Romper">
+                    <img src="assets/images/hero-slider/kids/kids-romper.jpg" alt="Striped Graphic Romper" loading="eager">
+                    <span class="hero-card-badge">Baby Romper</span>
+                  </div>
+                </div>
+
+              </div>
             </div>
-            <!-- <span id="mobile-slider-counter" class="text-xs font-mono font-bold text-lime-400">01 / 06</span> -->
+
           </div>
         </div>
+
+        <!-- ==================================================== -->
+        <!-- SLIDE 2: MEN'S COLLECTION -->
+        <!-- ==================================================== -->
+        <div class="hero-concept-slide inactive-slide" data-slide-index="1">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 xl:col-span-6 space-y-4 text-left">
+              
+              <!-- Top Hatching Stripes Kicker -->
+              <div class="hero-animate-kicker">
+                <div class="hero-kicker-stripes">
+                  <span class="hero-hatch-stripes"></span>
+                  <span>DO YOU NEED</span>
+                  <span class="hero-hatch-stripes"></span>
+                </div>
+              </div>
+
+              <!-- Main Title -->
+              <div class="hero-animate-title">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                  Men's Collection
+                </h1>
+              </div>
+
+              <!-- Description -->
+              <div class="hero-animate-desc">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+                  Tailored pique polo shirts, heavy fleece streetwear hoodies, selvedge denim, and versatile casuals engineered for international apparel brands.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-lime-400">
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">220 GSM Pique</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">340 GSM French Terry</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">MOQ 500 pcs</span>
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="hero-animate-ctas pt-3 flex flex-wrap gap-3.5 items-center">
+                <a href="productsd.html#men" class="btn-pill-lime">
+                  <span>Explore Men's Wear</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="contactd.html#rfq-section" class="btn-pill-white">
+                  <span>Request RFQ</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Staggered 3-Column Product Showcase -->
+            <div class="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end hero-animate-cards">
+              <div class="hero-stagger-collage">
+                
+                <!-- Column 1: Staggered Lowest -->
+                <div class="hero-stagger-col hero-stagger-col-1">
+                  <div class="hero-product-card group" title="Men's Vintage Denim Jeans">
+                    <img src="assets/images/products/mens-denim.jpg" alt="Men's Denim Jeans" loading="lazy">
+                    <span class="hero-card-badge">Men's Denim</span>
+                  </div>
+                  <div class="hero-product-card group" title="100% Combed Cotton Graphic Tee">
+                    <img src="assets/images/products/printed-tee.jpg" alt="Cotton Graphic Tee" loading="lazy">
+                    <span class="hero-card-badge">Combed Cotton</span>
+                  </div>
+                </div>
+
+                <!-- Column 2: Staggered Mid -->
+                <div class="hero-stagger-col hero-stagger-col-2">
+                  <div class="hero-product-card group" title="Tailored Pique Knit Polo Shirt">
+                    <img src="assets/images/hero-featured-polo.jpg" alt="Tailored Pique Polo" loading="lazy">
+                    <span class="hero-card-badge">Pique Polo</span>
+                  </div>
+                  <div class="hero-product-card group" title="Men's Utility Cargo Shorts">
+                    <img src="assets/images/products/cargo-shorts.png" alt="Utility Cargo Shorts" loading="lazy">
+                    <span class="hero-card-badge">Cargo Shorts</span>
+                  </div>
+                </div>
+
+                <!-- Column 3: Staggered Top -->
+                <div class="hero-stagger-col hero-stagger-col-3">
+                  <div class="hero-product-card group" title="Heavy Fleece Streetwear Hoodie">
+                    <img src="assets/images/hero-featured-denim.jpg" alt="Heavy Fleece Hoodie" loading="lazy">
+                    <span class="hero-card-badge">Fleece Hoodie</span>
+                  </div>
+                  <div class="hero-product-card group" title="Performance Knit Tennis Polo">
+                    <img src="assets/images/products/polo-shirt.png" alt="Performance Polo" loading="lazy">
+                    <span class="hero-card-badge">Sport Polo</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- SLIDE 3: WOMEN'S FASHION -->
+        <!-- ==================================================== -->
+        <div class="hero-concept-slide inactive-slide" data-slide-index="2">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 xl:col-span-6 space-y-4 text-left">
+              
+              <!-- Top Hatching Stripes Kicker -->
+              <div class="hero-animate-kicker">
+                <div class="">
+                  <span class=""></span>
+                  <span>DO YOU NEED</span>
+                  <span class=""></span>
+                </div>
+              </div>
+
+              <!-- Main Title -->
+              <div class="hero-animate-title">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                  Women's Fashion
+                </h1>
+              </div>
+
+              <!-- Description -->
+              <div class="hero-animate-desc">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+                  Chic ladies outerwear, lightweight knit cardigans, casual dresses, stretch jeans, and elevated everyday staples manufactured to global retail standards.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-lime-400">
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Eco-Conscious</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Fine Gauge Knits</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">European Fitting</span>
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="hero-animate-ctas pt-3 flex flex-wrap gap-3.5 items-center">
+                <a href="productsd.html#women" class="btn-pill-lime">
+                  <span>Explore Women's Wear</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="contactd.html#rfq-section" class="btn-pill-white">
+                  <span>Request RFQ</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Staggered 3-Column Product Showcase -->
+            <div class="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end hero-animate-cards">
+              <div class="hero-stagger-collage">
+                
+                <!-- Column 1: Staggered Lowest -->
+                <div class="hero-stagger-col hero-stagger-col-1">
+                  <div class="hero-product-card group" title="Women's Stretch Ripped Denim">
+                    <img src="assets/images/products/ripped-jeans.jpg" alt="Stretch Denim Jeans" loading="lazy">
+                    <span class="hero-card-badge">Stretch Denim</span>
+                  </div>
+                  <div class="hero-product-card group" title="Floral Pattern Summer Dress">
+                    <img src="assets/images/products/baby-girls-dress.jpg" alt="Floral Dress" loading="lazy">
+                    <span class="hero-card-badge">Casual Dress</span>
+                  </div>
+                </div>
+
+                <!-- Column 2: Staggered Mid -->
+                <div class="hero-stagger-col hero-stagger-col-2">
+                  <div class="hero-product-card group" title="Fine Knit Button Cardigan">
+                    <img src="assets/images/products/designer-cardigan.jpg" alt="Fine Knit Cardigan" loading="lazy">
+                    <span class="hero-card-badge">Fine Cardigan</span>
+                  </div>
+                  <div class="hero-product-card group" title="Ladies Tailored Formal Trouser">
+                    <img src="assets/images/products/ladies-formal-pant.jpg" alt="Formal Pants" loading="lazy">
+                    <span class="hero-card-badge">Formal Trouser</span>
+                  </div>
+                </div>
+
+                <!-- Column 3: Staggered Top -->
+                <div class="hero-stagger-col hero-stagger-col-3">
+                  <div class="hero-product-card group" title="Lightweight Quilted Puffer Jacket">
+                    <img src="assets/images/products/ladies-jacket.jpg" alt="Quilted Puffer Jacket" loading="lazy">
+                    <span class="hero-card-badge">Quilted Jacket</span>
+                  </div>
+                  <div class="hero-product-card group" title="Organic Cotton Pastel Tee">
+                    <img src="assets/images/products/baby-pink-tee.jpg" alt="Cotton Pastel Tee" loading="lazy">
+                    <span class="hero-card-badge">Pastel Cotton</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- SLIDE 4: DENIM & CASUALS -->
+        <!-- ==================================================== -->
+        <div class="hero-concept-slide inactive-slide" data-slide-index="3">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Text Content -->
+            <div class="lg:col-span-6 xl:col-span-6 space-y-4 text-left">
+              
+              <!-- Top Hatching Stripes Kicker -->
+              <div class="hero-animate-kicker">
+                <div class="">
+                  <span class=""></span>
+                  <span>DO YOU NEED</span>
+                  <span class=""></span>
+                </div>
+              </div>
+
+              <!-- Main Title -->
+              <div class="hero-animate-title">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                  Denim &amp; Casuals
+                </h1>
+              </div>
+
+              <!-- Description -->
+              <div class="hero-animate-desc">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+                  Heavyweight authentic denim, custom enzyme washes, vintage distressed finishes, and rugged casual streetwear with superior durability and comfort.
+                </p>
+                <div class="pt-2 flex flex-wrap gap-2 text-xs font-semibold text-lime-400">
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">12 - 14.5 Oz Denim</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Laser Whiskering</span>
+                  <span class="px-2.5 py-1 bg-lime-500/10 border border-lime-500/20 rounded-full">Eco Washing Tech</span>
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              <div class="hero-animate-ctas pt-3 flex flex-wrap gap-3.5 items-center">
+                <a href="productsd.html#denim" class="btn-pill-lime">
+                  <span>Explore Denim Line</span>
+                  <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="contactd.html#rfq-section" class="btn-pill-white">
+                  <span>Request RFQ</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Staggered 3-Column Product Showcase -->
+            <div class="lg:col-span-6 xl:col-span-6 flex justify-center lg:justify-end hero-animate-cards">
+              <div class="hero-stagger-collage">
+                
+                <!-- Column 1: Staggered Lowest -->
+                <div class="hero-stagger-col hero-stagger-col-1">
+                  <div class="hero-product-card group" title="Vintage Distressed Ripped Denim">
+                    <img src="assets/images/products/ripped-jeans.jpg" alt="Vintage Distressed Jeans" loading="lazy">
+                    <span class="hero-card-badge">Ripped Denim</span>
+                  </div>
+                  <div class="hero-product-card group" title="Denim Multi-Pocket Cargo Shorts">
+                    <img src="assets/images/products/cargo-shorts.png" alt="Denim Cargo Shorts" loading="lazy">
+                    <span class="hero-card-badge">Cargo Shorts</span>
+                  </div>
+                </div>
+
+                <!-- Column 2: Staggered Mid -->
+                <div class="hero-stagger-col hero-stagger-col-2">
+                  <div class="hero-product-card group" title="Raw Indigo Selvedge Jeans">
+                    <img src="assets/images/products/mens-denim.jpg" alt="Raw Indigo Denim" loading="lazy">
+                    <span class="hero-card-badge">Selvedge Denim</span>
+                  </div>
+                  <div class="hero-product-card group" title="Heavyweight Graphic Street Tee">
+                    <img src="assets/images/products/printed-tee.jpg" alt="Streetwear Graphic Tee" loading="lazy">
+                    <span class="hero-card-badge">Graphic Tee</span>
+                  </div>
+                </div>
+
+                <!-- Column 3: Staggered Top -->
+                <div class="hero-stagger-col hero-stagger-col-3">
+                  <div class="hero-product-card group" title="Oversized Heavy Fleece Hoodie">
+                    <img src="assets/images/hero-featured-denim.jpg" alt="Heavy Fleece Hoodie" loading="lazy">
+                    <span class="hero-card-badge">Oversized Hoodie</span>
+                  </div>
+                  <div class="hero-product-card group" title="Utility Zip-Up Bomber Jacket">
+                    <img src="assets/images/products/ladies-jacket.jpg" alt="Utility Bomber Jacket" loading="lazy">
+                    <span class="hero-card-badge">Bomber Jacket</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
-      <!-- ==================================================== -->
-      <!-- 2. DESKTOP EXCLUSIVE VIEW (Dual-Column Slides with Product Card) -->
-      <!-- ==================================================== -->
-      <div class="hidden lg:block">
-        <!-- Slide Viewport -->
-        <div class="overflow-hidden w-full relative">
-          <div id="hero-track" class="hero-slider-track flex items-stretch">
-            
-            <!-- Slide 1: Quality at Every Stage (Matching Screenshot) -->
-            <div class="hero-slide w-full flex-shrink-0 min-w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div class="lg:col-span-7 xl:col-span-8 space-y-4">
-                <div class="space-y-1">
-                  <span class="text-[11px] font-bold tracking-[0.25em] text-slate-300 uppercase block">
-                    RSG APPAREL
-                  </span>
-                  <span class="text-xs sm:text-sm font-extrabold tracking-wider text-lime-400 uppercase inline-block">
-                    CLOTHING MANUFACTURING &bull; PRIVATE LABEL &bull; SUPPLY
-                  </span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-white leading-[1.08] font-editorial">
-                  Quality at <span class="text-lime-400 italic font-medium">Every Stage</span>
-                </h1>
-                
-                <p class="text-sm sm:text-base lg:text-lg text-slate-300/90 leading-relaxed max-w-2xl font-normal pt-1">
-                  A quality-focused workflow from incoming materials to final packing, built around buyer specifications.
-                </p>
-                
-                <div class="pt-4 flex flex-wrap gap-4 items-center">
-                  <a href="contact.html" class="btn-pill-lime">
-                    <span>Discuss Quality</span>
-                    <i class="fa-solid fa-arrow-right text-xs"></i>
-                  </a>
-                  <a href="compliance.html" class="btn-pill-white">
-                    Quality Assurance
-                  </a>
-                </div>
-              </div>
-
-              <!-- Visual Featured Product Showcase Card on Right Side -->
-              <div class="lg:col-span-5 xl:col-span-4 flex justify-end">
-                <div class="bg-[#0d131a]/90 border border-slate-700/80 rounded-3xl p-4 sm:p-5 backdrop-blur-2xl shadow-2xl max-w-sm w-full text-left space-y-3.5 hover:border-lime-500/50 transition-all duration-300">
-                  
-                  <div class="flex items-center justify-between">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-lime-500/15 border border-lime-500/30 text-lime-400 text-[10px] font-bold uppercase tracking-wider">
-                      <span class="w-1.5 h-1.5 rounded-full bg-lime-400 animate-pulse"></span>
-                      Featured Export Style
-                    </span>
-                  </div>
-
-                  <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-slate-900 border border-slate-800 group/img">
-                    <img id="hero-card-img" src="assets/images/hero-featured-polo.jpg" alt="RSG Custom Polo" class="w-full h-full object-cover transition-all duration-500 group-hover/img:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#070a0e]/90 via-[#070a0e]/25 to-transparent"></div>
-                    
-                    <!-- <div class="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-                      <div>
-                        <span class="text-[10px] uppercase tracking-wider text-lime-400 font-bold block" id="hero-card-cat">Knitwear Collection</span>
-                        <h4 class="text-sm sm:text-base font-bold text-white font-editorial leading-tight" id="hero-card-title">Tailored Pique Polo Shirt</h4>
-                      </div>
-                      <span class="px-2.5 py-1 bg-[#070a0e]/80 backdrop-blur-md rounded-lg text-[10px] text-lime-300 font-bold border border-lime-500/30" id="hero-card-gsm">220 GSM</span>
-                    </div> -->
-                  </div>
-
-                  <!-- <div class="grid grid-cols-2 gap-2 pt-0.5 text-xs">
-                    <div class="p-2.5 bg-slate-900/70 rounded-xl border border-slate-800/80">
-                      <span class="text-[10px] text-slate-400 block font-medium">Fabric Specification</span>
-                      <span class="text-[11px] text-white font-bold block truncate" id="hero-card-fabric">100% Combed Cotton</span>
-                    </div>
-                    <div class="p-2.5 bg-slate-900/70 rounded-xl border border-slate-800/80">
-                      <span class="text-[10px] text-slate-400 block font-medium">Manufacturing MOQ</span>
-                      <span class="text-[11px] text-lime-400 font-bold block truncate" id="hero-card-moq">MOQ 500 pcs/color</span>
-                    </div>
-                  </div> -->
-
-                  <div class="space-y-1.5 pt-1.5 border-t border-slate-800/80">
-                    <div class="flex items-center justify-between text-[10px] text-slate-400 font-medium">
-                      <span>Quick Production Styles:</span>
-                      <span class="text-lime-400 font-semibold">Click to preview</span>
-                    </div>
-                    <div class="grid grid-cols-4 gap-2">
-                      <button type="button" onclick="switchHeroProduct(0)" aria-label="Polo Shirt" class="hero-thumb-btn active-thumb rounded-xl overflow-hidden border-2 border-lime-500 aspect-square transition relative group">
-                        <img src="assets/images/hero-featured-polo.jpg" alt="Polo" class="w-full h-full object-cover">
-                      </button>
-                      <button type="button" onclick="switchHeroProduct(1)" aria-label="Hoodie" class="hero-thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-lime-500/60 aspect-square transition relative group">
-                        <img src="assets/images/hero-featured-denim.jpg" alt="Hoodie" class="w-full h-full object-cover">
-                      </button>
-                      <button type="button" onclick="switchHeroProduct(2)" aria-label="Jacket" class="hero-thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-lime-500/60 aspect-square transition relative group">
-                        <img src="assets/images/products/ladies-jacket.jpg" alt="Jacket" class="w-full h-full object-cover">
-                      </button>
-                      <button type="button" onclick="switchHeroProduct(3)" aria-label="Jeans" class="hero-thumb-btn rounded-xl overflow-hidden border-2 border-transparent hover:border-lime-500/60 aspect-square transition relative group">
-                        <img src="assets/images/products/ripped-jeans.jpg" alt="Jeans" class="w-full h-full object-cover">
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="pt-1 flex items-center gap-2">
-                    <a href="#product-catalog" class="flex-1 py-2.5 px-3 bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-xl text-center transition shadow-lg shadow-lime-500/20">
-                      View Catalog &rarr;
-                    </a>
-                    <a href="contact.html#rfq-section" class="py-2.5 px-3 bg-[#121922] hover:bg-slate-800 text-slate-200 hover:text-white font-bold text-xs uppercase tracking-wider rounded-xl transition border border-slate-700">
-                      Order Sample
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
+      <!-- BOTTOM SLIDER CONTROLS BAR -->
+      <div class="flex items-center justify-between pt-8 sm:pt-10 mt-8">
+        
+        <!-- Live Slide Counter & Progress Track -->
+        <!-- <div class="flex items-center gap-4">
+          <span id="hero-counter" class="text-xs font-mono font-bold text-lime-400 tracking-wider">01 / 04</span>
+          <div class="hero-progress-track hidden sm:block">
+            <div id="hero-progress-fill" class="hero-progress-fill" style="width: 25%;"></div>
           </div>
+        </div> -->
+
+        <!-- Dot Indicators -->
+        <div id="hero-dots" class="flex items-center gap-2">
+          <button type="button" class="h-2.5 rounded-full transition-all duration-300 cursor-pointer bg-lime-400 w-8" aria-label="Slide 1" onclick="goToHeroSlide(0)"></button>
+          <button type="button" class="h-2.5 rounded-full transition-all duration-300 cursor-pointer bg-white/40 hover:bg-white/70 w-2.5" aria-label="Slide 2" onclick="goToHeroSlide(1)"></button>
+          <button type="button" class="h-2.5 rounded-full transition-all duration-300 cursor-pointer bg-white/40 hover:bg-white/70 w-2.5" aria-label="Slide 3" onclick="goToHeroSlide(2)"></button>
+          <button type="button" class="h-2.5 rounded-full transition-all duration-300 cursor-pointer bg-white/40 hover:bg-white/70 w-2.5" aria-label="Slide 4" onclick="goToHeroSlide(3)"></button>
         </div>
 
-     
+        <!-- Prev / Next Navigation Arrow Buttons -->
+        <!-- <div class="flex items-center gap-2">
+          <button type="button" id="hero-prev" class="w-10 h-10 rounded-full bg-[#0d131a]/80 hover:bg-lime-400 hover:text-slate-950 text-white border border-slate-700/80 backdrop-blur-md flex items-center justify-center text-xs transition-all duration-200 active:scale-90 shadow-lg cursor-pointer" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left text-xs"></i>
+          </button>
+          <button type="button" id="hero-next" class="w-10 h-10 rounded-full bg-[#0d131a]/80 hover:bg-lime-400 hover:text-slate-950 text-white border border-slate-700/80 backdrop-blur-md flex items-center justify-center text-xs transition-all duration-200 active:scale-90 shadow-lg cursor-pointer" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+          </button>
+        </div> -->
+
       </div>
 
     </div>
