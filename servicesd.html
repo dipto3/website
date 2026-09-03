@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manufacturing & Sourcing Services | RSG Apparels - Garments Buying House</title>
+  <meta name="description" content="Explore RSG Apparels manufacturing & buying house services in Bangladesh: fabric consumption & costing, rapid sampling, production merchandising, 4-tier quality audits (AQL 1.5), and global logistics.">
+  <link rel="canonical" href="">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f7fee7',
+              100: '#ecfccb',
+              200: '#d9f99d',
+              300: '#bef264',
+              400: '#a3e635',
+              500: '#84cc16',
+              600: '#65a30d',
+              700: '#4d7c0f',
+              800: '#3f6212',
+              900: '#365314',
+            },
+            dark: {
+              950: '#070a0e',
+              900: '#0d131a',
+              850: '#121922',
+              800: '#1a2330'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            editorial: ['"Playfair Display"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-lime-500 selection:text-slate-950">
+
+  <!-- MAIN HEADER (Unified Fixed Header, No Gap) -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300">
+    <!-- Top Announcement Bar (Collapses smoothly on scroll, hidden on mobile) -->
+    <div id="top-announcement-bar" class="bg-[#070a0e] text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800/80 hidden md:block">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2">
+        <div class="flex items-center gap-6">
+          <span class="font-medium text-slate-200">End-to-End Buying House & Quality Control Infrastructure</span>
+          <span class="hidden lg:inline-block text-slate-700">|</span>
+          <span class="hidden lg:flex items-center gap-1.5 text-slate-400 text-[11px]">
+            <i class="fa-solid fa-microscope text-lime-400"></i> Full In-House Lab Testing & AQL 1.5 / 2.5 Strict Audits
+          </span>
+        </div>
+        <div class="flex items-center gap-5 text-slate-300 text-[11px]">
+          <a href="tel:+8801777777777" class="hover:text-lime-400 transition flex items-center gap-1.5"><i class="fa-solid fa-phone text-lime-400"></i> +880 1777777777</a>
+          <span class="text-slate-700">|</span>
+          <a href="mailto:info@rsgapparels.com" class="hover:text-lime-400 transition flex items-center gap-1.5"><i class="fa-solid fa-envelope text-lime-400"></i> info@rsgapparels.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <nav id="main-navbar" class="glass-nav transition-all duration-300 py-3.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <img src="assets/images/rsg-logo.png" alt="RSG Apparels" class="h-9 sm:h-10 w-auto object-contain transition duration-300 group-hover:scale-105">
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="index.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">Home</a>
+          <a href="about.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">About</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">Products</a>
+          <a href="services.html" class="nav-link active text-sm font-semibold text-white hover:text-lime-400">Manufacturing</a>
+          <a href="compliance.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">Quality</a>
+          <a href="products.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">Gallery</a>
+          <a href="contact.html" class="nav-link text-sm font-medium text-slate-200 hover:text-lime-400">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="contact.html#rfq-section" class="btn-pill-lime hidden sm:inline-flex text-xs uppercase tracking-wider">
+            <span>Discuss Quality</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+          <button id="mobile-menu-open" class="lg:hidden p-2 text-slate-200 hover:text-lime-400 focus:outline-none" aria-label="Open menu">
+            <i class="fa-solid fa-bars-staggered text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MOBILE DRAWER -->
+  <div id="mobile-backdrop" class="fixed inset-0 bg-[#070a0e]/80 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  <div id="mobile-drawer" class="fixed top-0 right-0 bottom-0 w-80 bg-[#0d131a] border-l border-slate-800 z-50 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div>
+      <div class="flex items-center justify-between pb-6 border-b border-slate-800">
+        <img src="assets/images/rsg-logo.png" alt="RSG Apparels" class="h-8 w-auto object-contain">
+        <button id="mobile-menu-close" class="text-slate-400 hover:text-white p-2">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+      <div class="py-6 flex flex-col gap-4">
+        <a href="index.html" class="text-slate-300 hover:text-white text-base">Home</a>
+        <a href="about.html" class="text-slate-300 hover:text-white text-base">About</a>
+        <a href="products.html" class="text-slate-300 hover:text-white text-base">Products</a>
+        <a href="services.html" class="text-lime-400 font-bold text-base">Manufacturing</a>
+        <a href="compliance.html" class="text-slate-300 hover:text-white text-base">Quality</a>
+        <a href="products.html" class="text-slate-300 hover:text-white text-base">Gallery</a>
+        <a href="contact.html" class="text-slate-300 hover:text-white text-base">Contact</a>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-slate-800 flex flex-col gap-3">
+      <a href="contact.html#rfq-section" class="btn-pill-lime w-full text-center text-xs uppercase">Request RFQ &rarr;</a>
+      <a href="https://wa.me/8801777777777" target="_blank" class="w-full py-3 bg-emerald-600 text-white text-xs font-bold uppercase text-center rounded-full flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative bg-mesh-dark pt-40 pb-24 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-lime-500/10 border border-lime-500/30 text-lime-400 text-xs font-semibold mb-4">
+        <i class="fa-solid fa-gears"></i> Full-Service Buying House
+      </div>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight font-editorial">
+        Comprehensive Sourcing, Merchandising & <span class="text-lime-400 italic font-medium">Strict Quality Control</span>
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+        Acting as the buyer's dedicated eyes, ears, and technical guardian directly on the manufacturing floor in Bangladesh.
+      </p>
+    </div>
+  </section>
+
+  <!-- SIX PILLARS OF SOURCING -->
+  <section class="py-24 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-lime-600 bg-lime-100/70 px-3.5 py-1 rounded-full">
+          Capabilities Matrix
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-3 font-editorial">
+          Our Complete Buying House Scope
+        </h2>
+        <p class="text-sm text-slate-600 mt-2">
+          From initial costing consumption sheets to container loading at Chittagong Port.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-calculator"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">Costing & Consumption</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              We perform precise fabric consumption and component costing for any specific style. By matching with optimal specialized factories, we confirm the most competitive price without sacrificing durability or safety compliance.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Open-book cost breakdown</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> 24 to 48-hour rapid turnaround</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-scissors"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">Sampling & Prototyping</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Our dedicated development merchandisers craft Development Samples, Fit Samples, Red Seal, and Gold Seal approval pieces. Our QC team checks every stitch against the technical file before international dispatch.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Rapid proto dispatch in 5-7 days</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Measurement tolerance audits (&plusmn;0.5cm)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-chart-gantt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">Production Merchandising</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Upon Master LC or TT confirmation, our production merchandiser locks fabric and trims bookings, convenes pre-production planning meetings with factory lines, and monitors daily output velocity against critical path milestones.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Dedicated point of contact</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Daily tracking of spinning & weaving</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-vial-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">Laboratory Testing</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              In-house and third-party accredited testing (SGS, Intertek, Bureau Veritas). We evaluate bulk fabric hangers, shade continuity, lab dip delta values, color rub fastness, pilling resistance, and dimensional stability.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Formal lab test certificate with shipment</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Zero toxic chemicals (REACH compliant)</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">4-Stage Quality Audits</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              We execute inline inspections continuously during production, pre-production checks (at 15% bulk), mid-term audits (at 50%), and final ex-factory inspection to ISO 2859-1 (AQL 1.5/2.5) before releasing cartons.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Independent QC squad stationed on lines</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Needle detection & metal check logged</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200/80 hover:shadow-xl hover:border-lime-500 transition-all duration-300 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-lime-100 text-lime-700 flex items-center justify-center text-xl font-bold">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 font-editorial">Logistics & Customs</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              We coordinate port delivery via our own fleet and supervise container stuffing. Forwarding bookings are managed with your nominated agents, followed by swift preparation of Bill of Lading, COO, and bank negotiation files.
+            </p>
+            <ul class="space-y-2 text-xs text-slate-700 pt-2 border-t border-slate-200/60 font-medium">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> Chittagong seaport & Dhaka airport</li>
+              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-lime-600 text-[10px]"></i> ETD/ETA milestone tracking</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-3xl font-extrabold text-slate-900 font-editorial">Why Global Retailers Rely on RSG Apparels</h2>
+        <p class="text-sm text-slate-600 mt-2">How our on-ground accountability compares to generic sourcing intermediaries.</p>
+      </div>
+
+      <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-[#070a0e] text-white">
+                <th class="p-4 sm:p-5 font-bold">Operational Aspect</th>
+                <th class="p-4 sm:p-5 font-bold text-lime-400 bg-[#0d131a]">RSG Apparels (Our Guarantee)</th>
+                <th class="p-4 sm:p-5 font-bold text-slate-400">Typical Sourcing Agents</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr>
+                <td class="p-4 sm:p-5 font-bold text-slate-900">Factory Relationships</td>
+                <td class="p-4 sm:p-5 bg-lime-50/50 font-semibold text-slate-900">Direct long-term manufacturing contracts with 15+ plants</td>
+                <td class="p-4 sm:p-5 text-slate-500">Brokers subcontracting to unknown third parties</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-bold text-slate-900">On-Floor Quality Control</td>
+                <td class="p-4 sm:p-5 bg-lime-50/50 font-semibold text-slate-900">4-stage audits (AQL 1.5/2.5) with full photographic dossiers</td>
+                <td class="p-4 sm:p-5 text-slate-500">Only random final check or none at all</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-bold text-slate-900">Prototyping Speed</td>
+                <td class="p-4 sm:p-5 bg-lime-50/50 font-semibold text-slate-900">5-7 business days with spec deviation sheet</td>
+                <td class="p-4 sm:p-5 text-slate-500">14-25 days with uncertain pattern fidelity</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-bold text-slate-900">Compliance & Audits</td>
+                <td class="p-4 sm:p-5 bg-lime-50/50 font-semibold text-slate-900">100% Accord, WRAP, OEKO-TEX Standard 100, Sedex</td>
+                <td class="p-4 sm:p-5 text-slate-500">Unverified safety standards risking brand PR</td>
+              </tr>
+              <tr>
+                <td class="p-4 sm:p-5 font-bold text-slate-900">Dual Office Access</td>
+                <td class="p-4 sm:p-5 bg-lime-50/50 font-semibold text-slate-900">Dhaka HQ + New York USA liaison team</td>
+                <td class="p-4 sm:p-5 text-slate-500">Only remote email contact across timezones</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA STRIP -->
+  <section class="py-16 bg-[#070a0e] text-white border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-extrabold font-editorial">Have a Style Tech-Pack or Reference Sample?</h3>
+        <p class="text-slate-300 text-sm mt-1">Get an open-book fabric consumption costing sheet within 24 hours.</p>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="contact.html#rfq-section" class="btn-pill-lime">
+          Submit Tech Pack RFQ
+        </a>
+        <a href="https://wa.me/8801777777777" target="_blank" class="btn-pill-white">
+          <i class="fa-brands fa-whatsapp text-sm text-emerald-500"></i> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#070a0e] text-slate-400 pt-16 pb-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="assets/images/rsg-logo.png" alt="RSG Apparels" class="h-10 w-auto object-contain">
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed pr-6">
+            Complete sourcing, merchandising, AQL 1.5 QA, and international freight logistics in Bangladesh.
+          </p>
+        </div>
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-white">Pages</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="index.html" class="hover:text-lime-400 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-lime-400 transition">About Us</a></li>
+            <li><a href="services.html" class="text-lime-400 font-semibold">Manufacturing</a></li>
+            <li><a href="products.html" class="hover:text-lime-400 transition">Product Catalog</a></li>
+            <li><a href="compliance.html" class="hover:text-lime-400 transition">Quality & Compliance</a></li>
+            <li><a href="contact.html" class="hover:text-lime-400 transition">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-white">Capabilities</h4>
+          <ul class="space-y-2 text-xs">
+            <li><span class="text-slate-300">Open Book Costing</span></li>
+            <li><span class="text-slate-300">Rapid Proto Sampling</span></li>
+            <li><span class="text-slate-300">4-Stage QC Audits</span></li>
+            <li><span class="text-slate-300">In-house Textile Lab</span></li>
+            <li><span class="text-slate-300">Chittagong Container Port</span></li>
+          </ul>
+        </div>
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-white">Offices</h4>
+          <div class="text-xs space-y-2">
+            <div>
+              <strong class="text-slate-200 block">Dhaka HQ:</strong>
+              <span>House# 50/A, Road# 10, Sector# 10, Uttara, Dhaka</span>
+              <div class="text-lime-400 font-semibold">+880 1777777777</div>
+            </div>
+            <div class="pt-1">
+              <strong class="text-slate-200 block">USA Branch:</strong>
+              <span>ARC GLOBAL 71, Hempstead, NY</span>
+              <div class="text-lime-400 font-semibold">+1 234-111-0000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <p>&copy; 2026 RSG Apparels. All Rights Reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="about.html" class="hover:text-slate-400">About Us</a>
+          <a href="compliance.html" class="hover:text-slate-400">Compliance</a>
+          <a href="contact.html" class="hover:text-slate-400">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Button -->
+  <aside class="whatsapp-float-container group" aria-label="WhatsApp Quick Contact">
+    <div class="whatsapp-tooltip">
+      <span class="whatsapp-status-dot"></span>
+      <span>Chat with us on <strong class="text-[#25D366] font-bold">WhatsApp</strong></span>
+    </div>
+    <a href="https://wa.me/880177777777?text=Hello%20RSG%20Apparels%2C%20I%20would%20like%20to%20inquire%20about%20garment%20manufacturing%20and%20orders." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-float-btn" 
+       id="whatsapp-chat-button"
+       aria-label="Chat with RSG Apparels on WhatsApp">
+      <span class="whatsapp-pulse-ring"></span>
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="whatsapp-badge-online">
+        <span class="whatsapp-badge-ping"></span>
+        <span class="whatsapp-badge-dot"></span>
+      </span>
+    </a>
+  </aside>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

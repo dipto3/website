@@ -1,64 +1,273 @@
-/* Modern Fashion Editorial Custom Styles for RM Fashion BD */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap');
+/* Modern Fashion Editorial Custom Styles for RSG Apparels */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap');
 
 :root {
-  --primary-navy: #0B1120;
-  --primary-slate: #0F172A;
-  --brand-blue: #2563EB;
-  --brand-gold: #D97706;
-  --accent-cyan: #0EA5E9;
+  --primary-obsidian: #070a0e;
+  --primary-slate: #0d131a;
+  --primary-card: #121922;
+  --brand-lime: #84cc16;
+  --brand-lime-hover: #97df1e;
+  --brand-lime-dark: #65a30d;
+  --brand-lime-light: #ecfccb;
+  --brand-lime-glow: rgba(132, 204, 22, 0.35);
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  color: #1E293B;
-  background-color: #F8FAFC;
+  color: #1e293b;
+  background-color: #f8fafc;
   overflow-x: hidden;
 }
 
 .font-editorial {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* Smooth glassmorphism */
+/* Smooth glassmorphism with dark obsidian background */
 .glass-nav {
-  background: rgba(11, 17, 32, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 10, 14, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .glass-nav-scrolled {
-  background: rgba(11, 17, 32, 0.95);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+  background: rgba(7, 10, 14, 0.98);
+  box-shadow: 0 12px 32px -10px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(132, 204, 22, 0.2);
+}
+
+/* Announcement Bar Collapse on Scroll */
+#top-announcement-bar {
+  max-height: 48px;
+  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.25s ease,
+              padding 0.3s ease;
+  overflow: hidden;
+}
+
+.header-scrolled #top-announcement-bar {
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom-color: transparent !important;
+  pointer-events: none;
+}
+
+/* Nav Active item with lime underline */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link.active {
+  color: #84cc16 !important;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #84cc16;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(132, 204, 22, 0.6);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-dark {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(13, 19, 26, 0.82);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Subtle textile weave pattern overlay */
+/* Hero Background Video and Overlay */
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  opacity: 0.78;
+  filter: contrast(1.05) brightness(0.85);
+  transition: opacity 1s ease;
+}
+
+/* Cinematic dual-layer gradient overlay for pristine text contrast */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(7, 10, 14, 0.94) 0%,
+    rgba(7, 10, 14, 0.82) 38%,
+    rgba(7, 10, 14, 0.52) 70%,
+    rgba(7, 10, 14, 0.35) 100%
+  );
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .hero-video-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 10, 14, 0.92) 0%,
+      rgba(7, 10, 14, 0.82) 60%,
+      rgba(7, 10, 14, 0.65) 100%
+    );
+  }
+}
+
+/* Pill buttons matching reference screenshot */
+.btn-pill-lime {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  background-color: #84cc16;
+  color: #070a0e;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 18px rgba(132, 204, 22, 0.38);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-pill-lime:hover {
+  background-color: #92d820;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(132, 204, 22, 0.48);
+}
+
+.btn-pill-lime:active {
+  transform: translateY(0);
+}
+
+.btn-pill-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: #070a0e;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.btn-pill-white:hover {
+  background-color: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-pill-white:active {
+  transform: translateY(0);
+}
+
+/* Slider progress line */
+.hero-progress-track {
+  position: relative;
+  width: 90px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.hero-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: #84cc16;
+  box-shadow: 0 0 8px rgba(132, 204, 22, 0.8);
+  transition: width 0.4s ease;
+}
+
+/* Subtle mesh textures */
 .bg-mesh-dark {
-  background-color: #0B1120;
+  background-color: #070a0e;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(217, 119, 6, 0.1) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, rgba(14, 165, 233, 0.08) 0px, transparent 50%);
+    radial-gradient(at 10% 10%, rgba(132, 204, 22, 0.12) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(101, 163, 13, 0.08) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
 }
 
 .bg-mesh-light {
-  background-color: #F8FAFC;
+  background-color: #f8fafc;
   background-image: 
-    radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.04) 0px, transparent 40%),
-    radial-gradient(at 0% 100%, rgba(217, 119, 6, 0.04) 0px, transparent 40%);
+    radial-gradient(at 100% 0%, rgba(132, 204, 22, 0.05) 0px, transparent 40%),
+    radial-gradient(at 0% 100%, rgba(101, 163, 13, 0.03) 0px, transparent 40%);
+}
+
+/* Glowing ring for Global Reach section */
+.ring-glow-lime {
+  position: relative;
+}
+
+.ring-glow-lime::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 1.5px solid rgba(132, 204, 22, 0.35);
+  animation: pulseRing 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.ring-glow-lime::after {
+  content: '';
+  position: absolute;
+  inset: -16px;
+  border-radius: 9999px;
+  border: 1px solid rgba(132, 204, 22, 0.18);
+  animation: pulseRing 3s ease-in-out infinite 0.6s;
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
 }
 
 /* Custom scrollbar */
@@ -66,14 +275,14 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B1120;
+  background: #070a0e;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #1e293b;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2563EB;
+  background: #84cc16;
 }
 
 /* Hover Zoom effect */
@@ -135,3 +344,191 @@ body {
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
 }
+
+/* Mobile Pure Product Image Slider */
+.mobile-slider-dot {
+  height: 0.375rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none;
+  padding: 0;
+}
+.mobile-slider-dot:focus,
+.mobile-slider-dot:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.mobile-slider-dot.active {
+  width: 1.5rem !important;
+  background-color: var(--brand-lime) !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.6) !important;
+}
+.mobile-slider-dot.inactive {
+  width: 0.5rem !important;
+  background-color: #475569 !important;
+  border-radius: 9999px !important;
+}
+
+/* ====================================================
+ * Floating WhatsApp Action Widget
+ * ==================================================== */
+.whatsapp-float-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+.whatsapp-float-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.625rem;
+  height: 3.625rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  font-size: 2rem;
+  box-shadow: 0 10px 25px -4px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.whatsapp-float-btn:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 16px 32px -4px rgba(37, 211, 102, 0.65), 0 6px 16px rgba(0, 0, 0, 0.25);
+  color: #ffffff !important;
+}
+
+.whatsapp-float-btn:active {
+  transform: scale(0.95) translateY(0);
+}
+
+.whatsapp-pulse-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid #25D366;
+  opacity: 0.75;
+  animation: waPulseRing 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes waPulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+.whatsapp-badge-online {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  display: flex;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.whatsapp-badge-ping {
+  position: absolute;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 9999px;
+  background-color: #4ade80;
+  opacity: 0.75;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.whatsapp-badge-dot {
+  position: relative;
+  display: inline-flex;
+  border-radius: 9999px;
+  height: 0.875rem;
+  width: 0.875rem;
+  background-color: #22c55e;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-tooltip {
+  position: relative;
+  margin-right: 0.875rem;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.75rem;
+  background: rgba(13, 19, 26, 0.94);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(8px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid rgba(13, 19, 26, 0.94);
+}
+
+.whatsapp-float-container:hover .whatsapp-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.whatsapp-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.8);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@media (max-width: 640px) {
+  .whatsapp-float-container {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+  .whatsapp-float-btn {
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.75rem;
+  }
+  .whatsapp-tooltip {
+    display: none;
+  }
+}
+

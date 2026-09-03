@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initMobileMenu();
   initHeroSlider();
+  initMobileProductSlider();
   initSpecialtyCarousel();
   initAnimatedCounters();
   initProductCatalog();
@@ -20,20 +21,27 @@ document.addEventListener('DOMContentLoaded', () => {
  * 1. NAVBAR SCROLL EFFECT
  * ---------------------------------------------------- */
 function initNavbar() {
+  const header = document.getElementById('main-header');
   const navbar = document.getElementById('main-navbar');
   if (!navbar) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 30) {
-      navbar.classList.add('glass-nav-scrolled');
-      navbar.classList.remove('py-4');
+  const onScroll = () => {
+    const isScrolled = window.scrollY > 20;
+    if (header) {
+      header.classList.toggle('header-scrolled', isScrolled);
+    }
+    navbar.classList.toggle('glass-nav-scrolled', isScrolled);
+    if (isScrolled) {
+      navbar.classList.remove('py-3.5', 'py-4');
       navbar.classList.add('py-2.5');
     } else {
-      navbar.classList.remove('glass-nav-scrolled');
-      navbar.classList.add('py-4');
       navbar.classList.remove('py-2.5');
+      navbar.classList.add('py-3.5');
     }
-  });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 /* ----------------------------------------------------
@@ -71,31 +79,42 @@ function initMobileMenu() {
 }
 
 /* ----------------------------------------------------
- * 3. HERO BANNER SLIDER
+ * 3. HERO BANNER SLIDER & BACKGROUND VIDEO
  * ---------------------------------------------------- */
 function initHeroSlider() {
-  const slider = document.getElementById('hero-slider');
-  if (!slider) return;
-
   const track = document.getElementById('hero-track');
-  const slides = slider.querySelectorAll('.hero-slide');
+  if (!track) return;
+  const slides = track.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
   const prevBtn = document.getElementById('hero-prev');
   const nextBtn = document.getElementById('hero-next');
   const dotsContainer = document.getElementById('hero-dots');
+  const counterEl = document.getElementById('hero-counter');
+  const progressBar = document.getElementById('hero-progress-bar');
+  const video = document.getElementById('hero-bg-video');
 
-  if (!slides.length) return;
+  // Video Autoplay policy handling
+  if (video) {
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay restricted: fallback poster image remains visible
+      });
+    }
+  }
+
   let current = 0;
   let slideInterval = null;
   const totalSlides = slides.length;
 
-  // Render dots
+  // Render dots if container exists
   if (dotsContainer) {
     dotsContainer.innerHTML = '';
     slides.forEach((_, idx) => {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.className = `h-3 rounded-full transition-all duration-300 cursor-pointer focus:outline-none ${
-        idx === 0 ? 'bg-amber-400 w-8' : 'bg-white/40 hover:bg-white/70 w-3'
+      dot.className = `h-2.5 rounded-full transition-all duration-300 cursor-pointer focus:outline-none ${
+        idx === 0 ? 'bg-lime-400 w-8' : 'bg-white/40 hover:bg-white/70 w-2.5'
       }`;
       dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
       dot.addEventListener('click', (e) => {
@@ -109,7 +128,20 @@ function initHeroSlider() {
 
   function updateSlidePosition() {
     if (track) {
-      track.style.transform = `translateX(-${current * 100}%)`;
+      track.style.transform = `translateX(-${(current * 100) / totalSlides}%)`;
+    }
+
+    // Update Counter (e.g., "01 / 06")
+    if (counterEl) {
+      const currentFormatted = String(current + 1).padStart(2, '0');
+      const totalFormatted = String(Math.max(totalSlides, 6)).padStart(2, '0');
+      counterEl.textContent = `${currentFormatted} / ${totalFormatted}`;
+    }
+
+    // Update Progress Bar fill
+    if (progressBar) {
+      const progressPercent = ((current + 1) / Math.max(totalSlides, 6)) * 100;
+      progressBar.style.width = `${progressPercent}%`;
     }
 
     // Update active dot indicators
@@ -117,9 +149,9 @@ function initHeroSlider() {
       const dots = dotsContainer.querySelectorAll('button');
       dots.forEach((dot, idx) => {
         if (idx === current) {
-          dot.className = 'w-8 h-3 rounded-full bg-amber-400 transition-all duration-300 cursor-pointer focus:outline-none';
+          dot.className = 'w-8 h-2.5 rounded-full bg-lime-400 transition-all duration-300 cursor-pointer focus:outline-none';
         } else {
-          dot.className = 'w-3 h-3 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer focus:outline-none';
+          dot.className = 'w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300 cursor-pointer focus:outline-none';
         }
       });
     }
@@ -140,7 +172,7 @@ function initHeroSlider() {
 
   function startTimer() {
     clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 7000);
   }
 
   function restartTimer() {
@@ -164,9 +196,16 @@ function initHeroSlider() {
     });
   }
 
-  // Pause on desktop mouse hover
-  slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
-  slider.addEventListener('mouseleave', startTimer);
+  // Initial state setup
+  updateSlidePosition();
+  startTimer();
+
+  // Mouse hover pause
+  const sliderContainer = track ? track.closest('section') : null;
+  if (sliderContainer) {
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    sliderContainer.addEventListener('mouseleave', startTimer);
+  }
 
   // Mobile Touch Swipe Support
   let touchStartX = 0;
@@ -174,18 +213,20 @@ function initHeroSlider() {
   let touchEndX = 0;
   let touchEndY = 0;
 
-  slider.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-    clearInterval(slideInterval);
-  }, { passive: true });
+  if (track) {
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+      clearInterval(slideInterval);
+    }, { passive: true });
 
-  slider.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-    startTimer();
-  }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      handleSwipe();
+      startTimer();
+    }, { passive: true });
+  }
 
   function handleSwipe() {
     const diffX = touchStartX - touchEndX;
@@ -202,7 +243,8 @@ function initHeroSlider() {
 
   // Keyboard navigation when in viewport
   document.addEventListener('keydown', (e) => {
-    const rect = slider.getBoundingClientRect();
+    if (!track) return;
+    const rect = track.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
       if (e.key === 'ArrowRight') {
         nextSlide();
@@ -216,6 +258,121 @@ function initHeroSlider() {
 
   updateSlidePosition();
   startTimer();
+}
+
+/* ----------------------------------------------------
+ * MOBILE EXCLUSIVE PURE PRODUCT IMAGE SLIDER
+ * ---------------------------------------------------- */
+function initMobileProductSlider() {
+  const container = document.getElementById('mobile-product-slider');
+  if (!container) return;
+
+  const slides = container.querySelectorAll('.mobile-product-slide');
+  const totalSlides = slides.length;
+  if (totalSlides === 0) return;
+
+  const prevBtn = document.getElementById('mobile-slider-prev');
+  const nextBtn = document.getElementById('mobile-slider-next');
+  const dots = document.querySelectorAll('#mobile-slider-dots .mobile-slider-dot');
+  const counterEl = document.getElementById('mobile-slider-counter');
+
+  let currentIndex = 0;
+  let autoSlideTimer = null;
+  let startX = 0;
+
+  function showSlide(idx) {
+    currentIndex = (idx + totalSlides) % totalSlides;
+
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        slide.style.opacity = '1';
+        slide.style.zIndex = '10';
+        slide.style.pointerEvents = 'auto';
+        slide.style.transform = 'scale(1)';
+      } else {
+        slide.style.opacity = '0';
+        slide.style.zIndex = '1';
+        slide.style.pointerEvents = 'none';
+        slide.style.transform = 'scale(1.03)';
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === currentIndex) {
+        dot.className = 'mobile-slider-dot active';
+      } else {
+        dot.className = 'mobile-slider-dot inactive';
+      }
+    });
+
+    if (counterEl) {
+      counterEl.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+    }
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoSlideTimer = setInterval(nextSlide, 3200);
+  }
+
+  function stopAutoPlay() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      startAutoPlay();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      startAutoPlay();
+    });
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+      showSlide(idx);
+      startAutoPlay();
+    });
+  });
+
+  // Touch swipe support for mobile
+  container.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    stopAutoPlay();
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 35) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    startAutoPlay();
+  }, { passive: true });
+
+  showSlide(0);
+  startAutoPlay();
 }
 
 /* ----------------------------------------------------
@@ -240,7 +397,7 @@ function initSpecialtyCarousel() {
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = `w-2 h-2 rounded-full transition-all ${
-        i === 0 ? 'bg-blue-600 w-6' : 'bg-slate-300 hover:bg-slate-400'
+        i === 0 ? 'bg-lime-500 w-6' : 'bg-slate-300 hover:bg-slate-400'
       }`;
       dot.addEventListener('click', () => {
         goTo(i);
@@ -265,7 +422,7 @@ function initSpecialtyCarousel() {
       const dots = dotsContainer.querySelectorAll('button');
       dots.forEach((d, i) => {
         if (i === currentIdx) {
-          d.className = 'w-6 h-2 rounded-full bg-blue-600 transition-all';
+          d.className = 'w-6 h-2 rounded-full bg-lime-500 transition-all';
         } else {
           d.className = 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all';
         }
@@ -338,134 +495,194 @@ function initAnimatedCounters() {
 }
 
 /* ----------------------------------------------------
+ * HERO PRODUCT SHOWCASE CARD INTERACTION
+ * ---------------------------------------------------- */
+const HERO_PRODUCTS = [
+  {
+    title: "Tailored Pique Polo Shirt",
+    category: "Knitwear Collection",
+    gsm: "220 GSM",
+    fabric: "100% Combed Cotton",
+    moq: "MOQ 500 pcs/color",
+    image: "assets/images/hero-featured-polo.jpg"
+  },
+  {
+    title: "Selvedge Denim & Hoodies",
+    category: "Streetwear & Denim",
+    gsm: "340 GSM",
+    fabric: "French Terry & Raw Denim",
+    moq: "MOQ 600 pcs/style",
+    image: "assets/images/hero-featured-denim.jpg"
+  },
+  {
+    title: "Quilted Puffer Outerwear",
+    category: "Winter & Technical",
+    gsm: "180 GSM",
+    fabric: "Polyfill & Water-Repel",
+    moq: "MOQ 400 pcs/style",
+    image: "assets/images/products/ladies-jacket.jpg"
+  },
+  {
+    title: "Vintage Distressed Jeans",
+    category: "Woven Denim Line",
+    gsm: "12.5 Oz",
+    fabric: "Ring-Spun Stretch Cotton",
+    moq: "MOQ 800 pcs/wash",
+    image: "assets/images/products/ripped-jeans.jpg"
+  }
+];
+
+window.switchHeroProduct = function(index) {
+  const product = HERO_PRODUCTS[index];
+  if (!product) return;
+  
+  const imgEl = document.getElementById('hero-card-img');
+  const titleEl = document.getElementById('hero-card-title');
+  const catEl = document.getElementById('hero-card-cat');
+  const gsmEl = document.getElementById('hero-card-gsm');
+  const fabricEl = document.getElementById('hero-card-fabric');
+  const moqEl = document.getElementById('hero-card-moq');
+
+  if (imgEl) {
+    imgEl.style.opacity = '0.3';
+    setTimeout(() => {
+      imgEl.src = product.image;
+      imgEl.style.opacity = '1';
+    }, 120);
+  }
+  if (titleEl) titleEl.textContent = product.title;
+  if (catEl) catEl.textContent = product.category;
+  if (gsmEl) gsmEl.textContent = product.gsm;
+  if (fabricEl) fabricEl.textContent = product.fabric;
+  if (moqEl) moqEl.textContent = product.moq;
+
+  // Update active thumbnail border
+  document.querySelectorAll('.hero-thumb-btn').forEach((btn, idx) => {
+    if (idx === index) {
+      btn.classList.add('border-lime-500');
+      btn.classList.remove('border-transparent');
+    } else {
+      btn.classList.remove('border-lime-500');
+      btn.classList.add('border-transparent');
+    }
+  });
+};
+
+/* ----------------------------------------------------
  * 6. PRODUCT CATALOG DATA & FILTERING
  * ---------------------------------------------------- */
 const PRODUCTS_DATA = [
   {
     id: 'men-01',
     category: 'men',
-    name: "Men's Premium Combed Cotton T-Shirt",
-    fabric: '100% Organic Combed Cotton',
-    weight: '180-200 GSM Single Jersey',
+    name: "Classic Pique Knit Polo Shirt",
+    fabric: '95% Combed Cotton, 5% Elastane Pique',
+    weight: '220-240 GSM Honeycomb Pique',
     moq: '500 pcs/color',
-    leadTime: '30-45 days',
-    colors: ['Jet Black', 'Optic White', 'Navy Heather', 'Olive'],
+    leadTime: '30-40 days',
+    colors: ['Deep Navy', 'Forest Green', 'Chalk White', 'Charcoal'],
     sizes: 'XS to 4XL',
-    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
-    description: 'High-density knit single jersey, bio-washed, silicon finished for ultra-soft hand feel. Double-needle stitch and lycra ribbed collar.',
+    image: 'assets/images/hero-featured-polo.jpg',
+    description: 'Export grade polo shirt with mother-of-pearl buttons, flat knit collar & cuffs with yarn-dyed contrast tipping. Pre-shrunk with enzyme wash.',
     tags: ['Best Seller', 'Oeko-Tex Standard 100']
   },
   {
     id: 'men-02',
     category: 'men',
-    name: "Classic Pique Knit Polo Shirt",
-    fabric: '95% Combed Cotton, 5% Elastane Pique',
-    weight: '220-240 GSM Honeycomb Pique',
-    moq: '600 pcs/color',
-    leadTime: '40-50 days',
-    colors: ['Royal Blue', 'Burgundy', 'Mustard Yellow', 'Pure White'],
+    name: "Heavy French Terry Pullover Hoodie",
+    fabric: '100% Ring Spun Combed Cotton Fleece',
+    weight: '340 GSM Heavyweight Terry',
+    moq: '400 pcs/color',
+    leadTime: '35-45 days',
+    colors: ['Heather Grey', 'Midnight Black', 'Washed Navy', 'Earth Olive'],
     sizes: 'S to 3XL',
-    image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=800&q=80',
-    description: 'Export grade polo shirt with mother-of-pearl buttons, flat knit collar & cuffs with yarn-dyed contrast tipping. Pre-shrunk with enzyme wash.',
-    tags: ['Export Classic', 'Accord Audited']
+    image: 'assets/images/hero-featured-denim.jpg',
+    description: 'Ultra-dense double-faced fleece with double-lined hood, metal eyelets, custom dipped drawstring cords, and kangaroo front pocket.',
+    tags: ['Streetwear Export', 'Accord Audited']
   },
   {
     id: 'men-03',
     category: 'men',
     name: "Vintage Wash Men's Denim Jeans",
     fabric: '98% Cotton, 2% Spandex Indigo Denim',
-    weight: '11.5 - 12.5 Oz Ring Spun Denim',
+    weight: '12.5 Oz Ring Spun Denim',
     moq: '800 pcs/style',
-    leadTime: '55-65 days',
+    leadTime: '50-60 days',
     colors: ['Vintage Tint Medium Blue', 'Raw Dark Indigo', 'Washed Black'],
     sizes: '28 to 42 Waist',
-    image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=800&q=80',
+    image: 'assets/images/products/ripped-jeans.jpg',
     description: 'Constructed using genuine YKK brass zippers, reinforced rivets at stress points, whiskering and subtle hand-scrape distress effects.',
     tags: ['Sustainable Wash', 'Water Recycle']
   },
   {
-    id: 'men-04',
-    category: 'men',
-    name: "Men's Urban Utility Bomber Jacket",
-    fabric: '100% Water-Resistant Polyester Shell / Taffeta Lining',
-    weight: '180 GSM Outer + 120 GSM Polyfill',
-    moq: '400 pcs/style',
-    leadTime: '50-60 days',
-    colors: ['Armory Green', 'Burnt Ochre', 'Matte Black'],
-    sizes: 'S to XXL',
-    image: 'https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=800&q=80',
-    description: 'Ribbed storm collar and cuffs, heavy metal front zipper, utility sleeve pocket with zip, dual fleece-lined hand pockets.',
-    tags: ['Winter Line', 'Water Repellent']
-  },
-  {
     id: 'women-01',
     category: 'women',
-    name: "Ladies Drop-Shoulder Relaxed Tee",
-    fabric: '100% Ring Spun Slub Cotton',
-    weight: '160 GSM Slub Jersey',
-    moq: '500 pcs/color',
-    leadTime: '30-40 days',
-    colors: ['Dusty Rose', 'Chalk White', 'Sage Green', 'Charcoal'],
-    sizes: 'XS to XXL',
-    image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
-    description: 'Contemporary drop-shoulder relaxed silhouette with raw-edge folded cuffs. Acid wash and garment-dyed options available.',
-    tags: ['Trend Collection', 'GOTS Certified']
+    name: "Women's Quilted Lightweight Jacket",
+    fabric: '100% Water-Resistant Polyester Shell / Taffeta Lining',
+    weight: '180 GSM Outer + 100 GSM Polyfill',
+    moq: '400 pcs/style',
+    leadTime: '45-55 days',
+    colors: ['Dove Grey', 'Olive Moss', 'Matte Black'],
+    sizes: 'XS to XL',
+    image: 'assets/images/products/ladies-jacket.jpg',
+    description: 'Diamond pattern quilting, collarless modern neck, smooth metal zip closure, bound hems, and wind-resistant inner placket.',
+    tags: ['Winter Line', 'Water Repellent']
   },
   {
     id: 'women-02',
     category: 'women',
-    name: "Ladies High-Rise Stretch Denim Pant",
-    fabric: '72% Cotton, 25% Polyester, 3% Elastane',
-    weight: '10.5 Oz Super Stretch Denim',
-    moq: '600 pcs/wash',
-    leadTime: '50-60 days',
-    colors: ['Medium Ocean Wash', 'Deep Indigo', 'Charcoal Fade'],
-    sizes: '24 to 36 Waist',
-    image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80',
-    description: '4-way high recovery stretch denim. Gap-proof contoured waistband, pocket stay technology, antique brass hardware.',
-    tags: ['4-Way Stretch', 'BSCI Audited']
+    name: "Ladies Fine Knit Designer Cardigan",
+    fabric: '85% Fine Combed Cotton, 15% Soft Acrylic',
+    weight: '12 Gauge Computerized Knit',
+    moq: '350 pcs/color',
+    leadTime: '40-50 days',
+    colors: ['Camel Heather', 'Oatmeal Melange', 'Deep Navy'],
+    sizes: 'XS to XXL',
+    image: 'assets/images/products/designer-cardigan.jpg',
+    description: 'Contemporary drop-shoulder relaxed silhouette, button-down placket with genuine horn buttons, ribbed cuffs and bottom band.',
+    tags: ['Trend Collection', 'GOTS Certified']
   },
   {
     id: 'women-03',
     category: 'women',
-    name: "Women's Cropped Trucker Denim Jacket",
-    fabric: '100% Rigid BCI Cotton Denim',
-    weight: '12 Oz Broken Twill',
-    moq: '500 pcs/style',
-    leadTime: '55-65 days',
-    colors: ['Classic Stonewash', 'Vintage Cream', 'Overdyed Sand'],
-    sizes: 'XS to XL',
-    image: 'https://images.unsplash.com/photo-1525457136159-8878648a7ad0?auto=format&fit=crop&w=800&q=80',
-    description: 'Boxy cropped silhouette, flap chest pockets, dual welt pockets, adjustable waist tabs, shank buttons with custom brand engraving.',
-    tags: ['Editorial Top Pick', 'WRAP Certified']
+    name: "Ladies Tailored Stretch Chino Pant",
+    fabric: '97% BCI Cotton, 3% Spandex Twill',
+    weight: '8.5 Oz Stretch Twill',
+    moq: '500 pcs/color',
+    leadTime: '45-55 days',
+    colors: ['Khaki', 'Dark Slate', 'Sand Cream'],
+    sizes: '24 to 34 Waist',
+    image: 'assets/images/products/ladies-formal-pant.jpg',
+    description: 'Clean front waistband with internal comfort stretch, rear welt pockets, bar-tacked stress seams, and smooth garment enzyme wash.',
+    tags: ['Office Casual', 'WRAP Certified']
   },
   {
     id: 'kids-01',
     category: 'kids',
-    name: "Kids Graphic Organic Cotton T-Shirt",
-    fabric: '100% GOTS Certified Organic Cotton',
-    weight: '160 GSM Single Jersey',
-    moq: '600 pcs/design',
+    name: "Kids Floral Organic Cotton Dress",
+    fabric: '100% GOTS Certified Organic Cotton Poplin',
+    weight: '130 GSM Soft Weave',
+    moq: '500 pcs/design',
     leadTime: '30-40 days',
-    colors: ['Sunburst Yellow', 'Sky Blue', 'Mint', 'Coral'],
-    sizes: '2T to 14 Years',
-    image: 'https://images.unsplash.com/photo-1519457431-44ccd64a579b?auto=format&fit=crop&w=800&q=80',
-    description: 'Eco-friendly water-based and puff printing that is nickel-free and formaldehyde-free. Safe for tender skin with tear-away neck tags.',
+    colors: ['Ruby Floral', 'Sky Daisy', 'Pastel Peach'],
+    sizes: '2T to 10 Years',
+    image: 'assets/images/products/baby-girls-dress.jpg',
+    description: 'Gentle on sensitive skin, back button keyhole closure, breathable lightweight weave, zero formaldehyde or harmful azo dyes.',
     tags: ['OEKO-TEX Class 1', 'Kids Safe']
   },
   {
-    id: 'sweater-01',
-    category: 'sweater',
-    name: "Men's 12GG Cashmere-Blend Cardigan",
-    fabric: '85% Fine Merino Wool, 15% Cashmere',
-    weight: '12 Gauge Flat Knit',
-    moq: '350 pcs/color',
-    leadTime: '55-70 days',
-    colors: ['Camel Heather', 'Midnight Navy', 'Charcoal Fleck'],
-    sizes: 'S to 3XL',
-    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
-    description: 'Engineered on computerized flat knitting machines. Ribbed V-neckline, genuine horn buttons, reinforced side seam pockets.',
-    tags: ['Luxury Knit', 'AQL 1.5 Inspected']
+    id: 'kids-02',
+    category: 'kids',
+    name: "Toddler Pastel Crewneck T-Shirt",
+    fabric: '100% Combed Cotton Single Jersey',
+    weight: '160 GSM Single Jersey',
+    moq: '600 pcs/color',
+    leadTime: '25-35 days',
+    colors: ['Baby Pink', 'Mint Green', 'Chalk White'],
+    sizes: '6M to 4T',
+    image: 'assets/images/products/baby-pink-tee.jpg',
+    description: 'Shoulder snap buttons for easy dressing, ultra-soft bio-polished cotton, flat-lock smooth seams that prevent chafing.',
+    tags: ['Baby Soft', 'GOTS Certified']
   }
 ];
 
@@ -519,10 +736,10 @@ function initProductCatalog() {
 
         <div class="p-5 flex-1 flex flex-col justify-between">
           <div>
-            <div class="text-[10px] font-semibold text-blue-600 tracking-wider uppercase mb-1">
+            <div class="text-[10px] font-semibold text-lime-600 tracking-wider uppercase mb-1">
               ${item.fabric}
             </div>
-            <h3 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-blue-600 transition-colors">
+            <h3 class="font-bold text-slate-900 text-sm leading-snug group-hover:text-lime-600 transition-colors">
               ${item.name}
             </h3>
             <p class="mt-1.5 text-xs text-slate-500 line-clamp-2">
@@ -532,7 +749,7 @@ function initProductCatalog() {
 
           <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <span class="text-xs font-semibold text-slate-700">${item.weight.split(' ')[0]} GSM</span>
-            <button onclick="window.openQuickView('${item.id}')" class="px-3 py-1.5 bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5">
+            <button onclick="window.openQuickView('${item.id}')" class="px-3 py-1.5 bg-slate-900 hover:bg-lime-500 hover:text-slate-950 text-white text-xs font-bold rounded-lg transition flex items-center gap-1.5">
               <i class="fa-solid fa-eye text-[10px]"></i> Quick View
             </button>
           </div>
@@ -544,10 +761,10 @@ function initProductCatalog() {
   categoryBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       categoryBtns.forEach(b => {
-        b.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+        b.classList.remove('bg-lime-500', 'text-slate-950', 'shadow-md');
         b.classList.add('bg-white', 'text-slate-600', 'hover:bg-slate-100');
       });
-      btn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+      btn.classList.add('bg-lime-500', 'text-slate-950', 'shadow-md');
       btn.classList.remove('bg-white', 'text-slate-600', 'hover:bg-slate-100');
       currentCategory = btn.getAttribute('data-category');
       render();
@@ -706,7 +923,7 @@ function initContactForms() {
           submitBtn.innerHTML = originalText;
         }
         form.reset();
-        showToast("Inquiry Received!", "Your RFQ specifications have been logged with RM Fashion BD Uttara HQ. Our Senior Merchandiser will contact you within 6 business hours with detailed costing.", "success");
+        showToast("Inquiry Received!", "Your RFQ specifications have been logged with RSG Apparels HQ. Our Senior Merchandiser will contact you within 6 business hours with detailed costing.", "success");
       }, 1200);
     });
   });
@@ -724,16 +941,16 @@ function showToast(title, message, type = 'info') {
   if (!toastBox) {
     toastBox = document.createElement('div');
     toastBox.id = 'toast-container';
-    toastBox.className = 'fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-md w-full px-4 pointer-events-none';
+    toastBox.className = 'fixed bottom-24 right-6 z-50 flex flex-col gap-3 max-w-md w-full px-4 pointer-events-none';
     document.body.appendChild(toastBox);
   }
 
   const toast = document.createElement('div');
   toast.className = `pointer-events-auto p-4 rounded-2xl shadow-2xl border backdrop-blur-md transform transition-all duration-500 translate-y-8 opacity-0 flex items-start gap-3.5 ${
-    type === 'success' ? 'bg-slate-900/95 text-white border-blue-500/40' : 'bg-white text-slate-800 border-slate-200'
+    type === 'success' ? 'bg-[#070a0e]/95 text-white border-lime-500/40 shadow-lime-500/10' : 'bg-white text-slate-800 border-slate-200'
   }`;
 
-  const iconClass = type === 'success' ? 'fa-solid fa-circle-check text-emerald-400 text-xl' : 'fa-solid fa-circle-info text-blue-500 text-xl';
+  const iconClass = type === 'success' ? 'fa-solid fa-circle-check text-lime-400 text-xl' : 'fa-solid fa-circle-info text-lime-500 text-xl';
 
   toast.innerHTML = `
     <i class="${iconClass} mt-0.5 flex-shrink-0"></i>
